@@ -62,7 +62,7 @@ ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     KAKADU_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64 \
     LD_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64:/usr/local/lib:$LD_LIBRARY_PATH \
     COMPOSER_ALLOW_SUPERUSER=1 \
-    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-16} \
+    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-18} \
     OPENJPEG_VERSION=${OPENJPEG_VERSION:-v2.4.0}
 
 ## Apache, PHP, FFMPEG, and other Islandora Depends.
@@ -219,8 +219,8 @@ RUN BUILD_DEPS="build-essential \
 # Composer & FITS ENV
 # @see: Composer https://github.com/composer/getcomposer.org/commits/main replace hash below with most recent hash also update version too if changed
 # @see: FITS https://projects.iq.harvard.edu/fits/downloads
-ENV COMPOSER_HASH=${COMPOSER_HASH:-bb013472aad94494ecb15c2a8128d18e8bf72c52} \
-    COMPOSER_VERSION=${COMPOSER_VERSION:-1.10.23} \
+ENV COMPOSER_HASH=${COMPOSER_HASH:-eef6844b9e99f10a61001855cf833fc6eb382e2b} \
+    COMPOSER_VERSION=${COMPOSER_VERSION:-1.10.24} \
     FITS_VERSION=${FITS_VERSION:-1.5.0}
 
 ## Let's go!  Finalize all remaining: djatoka, composer, drush, fits.
