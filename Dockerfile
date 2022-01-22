@@ -1,5 +1,5 @@
-# @see https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/8/jdk/ubuntu/Dockerfile.hotspot.releases.full
-FROM adoptopenjdk:8-jdk-hotspot
+# Moved to https://github.com/adoptium/containers/blob/main/8/jdk/ubuntu/Dockerfile.releases.full for newer supported java updates
+FROM eclipse-temurin:8-jdk-focal
 
 ENV INITRD=no \
     ISLANDORA_UID=${ISLANDORA_UID:-1000} \
@@ -220,9 +220,12 @@ RUN BUILD_DEPS="build-essential \
 # Composer & FITS ENV
 # @see: Composer https://github.com/composer/getcomposer.org/commits/main replace hash below with most recent hash also update version too if changed
 # @see: FITS https://projects.iq.harvard.edu/fits/downloads
+# @see: XERCES https://xerces.apache.org/mirrors.cgi for the new xml-api.jar version.
 ENV COMPOSER_HASH=${COMPOSER_HASH:-9c234603a06f27041dca6b639a16ebc1f27ea22b} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-1.10.25} \
-    FITS_VERSION=${FITS_VERSION:-1.5.0}
+    FITS_VERSION=${FITS_VERSION:-1.5.1} \
+    XERCES_VERSION=${XERCES_VERSION:-2.12.1} \
+    XERCES_VERSION_DIR=${XERCES_VERSION_DIR:-2_12_1}
 
 ## Let's go!  Finalize all remaining: djatoka, composer, drush, fits.
 # @see: Drush https://github.com/drush-ops/drush/tags
@@ -249,6 +252,12 @@ RUN useradd --comment 'Islandora User' --no-create-home -d /var/www/html --syste
     ln -s /usr/local/fits/fits.sh /usr/local/bin/fits && \
     ## The following line will remove TikaTool operations while FITS generates technical metadata, preventing Tika temp files from maxing out disk space as described in ISLE Issue #96. Remove to allow Tika to run
     sed -ie 's/<tool class="edu\.harvard\.hul\.ois\.fits\.tools\.tika\.TikaTool" exclude-exts="jar,avi,mov,mpg,mpeg,mkv,mp4,mpeg4,m2ts,mxf,ogv,mj2,divx,dv,m4v,m2v,ismv" classpath-dirs="lib\/tika"\/>/<!-- & -->/' /usr/local/fits/xml/fits.xml && \    
+    ## As of FITS 1.5.1 - Missing xml-apis.jar file causes errors in creating derivatives. Adding here
+    ## Xerces2 Java is a library for parsing, validating and manipulating XML documents.
+    ## https://xerces.apache.org
+    curl -O -L https://dlcdn.apache.org/xerces/j/binaries/Xerces-J-bin.$XERCES_VERSION.zip && \
+    unzip Xerces-J-bin.$XERCES_VERSION.zip -d xerces-$XERCES_VERSION && \
+    cp xerces-$XERCES_VERSION/xerces-$XERCES_VERSION_DIR/xml-apis.jar /usr/local/fits/lib/ && \
     ## BUILD TOOLS
     mkdir /utility-scripts && \
     cd /utility-scripts && \
