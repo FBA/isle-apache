@@ -1,4 +1,4 @@
-# Moved to https://github.com/adoptium/containers/blob/main/8/jdk/ubuntu/Dockerfile.releases.full for newer supported java updates
+# @see https://github.com/adoptium/containers/blob/main/8/jdk/ubuntu/Dockerfile.releases.full for newer supported java updates
 FROM eclipse-temurin:8-jdk-focal
 
 ENV INITRD=no \
