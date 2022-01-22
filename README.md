@@ -6,7 +6,7 @@ Designed as the webserver (httpd) for ISLE. Hosts Drupal and Islandora modules a
 
 Based on:
 
-* [Adopt OpenJDK 8 Docker Image](https://hub.docker.com/r/adoptopenjdk/openjdk8)
+* [Eclipse Temurin / OpenJDK 8 Docker Image](https://hub.docker.com/_/eclipse-temurin)
 * [Apache HTTPD 2.4](https://httpd.apache.org/)
 * [PHP 7.1](https://www.php.net/)
 
