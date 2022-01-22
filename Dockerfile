@@ -100,8 +100,8 @@ RUN add-apt-repository -y ppa:ondrej/apache2 && \
     php7.1-zip \
     php7.1-bcmath \
     php7.1-intl \
-    php7.1-uploadprogress \
-    php7.1-xdebug \
+    php-uploadprogress \
+    php-xdebug \
     bibutils \
     libicu-dev \
     tesseract-ocr \
