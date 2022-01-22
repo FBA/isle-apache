@@ -100,8 +100,8 @@ RUN add-apt-repository -y ppa:ondrej/apache2 && \
     php7.1-zip \
     php7.1-bcmath \
     php7.1-intl \
-    php-uploadprogress \
-    php-xdebug \
+    php7.1-uploadprogress \
+    php7.1-xdebug \
     bibutils \
     libicu-dev \
     tesseract-ocr \
@@ -118,6 +118,7 @@ RUN add-apt-repository -y ppa:ondrej/apache2 && \
     libleptonica-dev" && \
     apt-get update && \
     apt-get install --no-install-recommends -y $FFMPEG_PACKS $APACHE_PACKS && \
+    update-alternatives --set php /usr/bin/php7.1 && \
     ## PHP conf  
     phpdismod xdebug && \
     ## memory_limit = -1?
