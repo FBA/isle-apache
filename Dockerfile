@@ -41,7 +41,7 @@ RUN GEN_DEP_PACKS="software-properties-common \
 
 ## S6-Overlay
 # @see: https://github.com/just-containers/s6-overlay
-ENV S6_OVERLAY_VERSION=${S6_OVERLAY_VERSION:-2.2.0.3}
+ENV S6_OVERLAY_VERSION=${S6_OVERLAY_VERSION:-3.0.0.2}
 ADD https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64-installer /tmp/
 RUN chmod +x /tmp/s6-overlay-amd64-installer && \
     /tmp/s6-overlay-amd64-installer /
@@ -62,7 +62,7 @@ ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     KAKADU_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64 \
     LD_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64:/usr/local/lib:$LD_LIBRARY_PATH \
     COMPOSER_ALLOW_SUPERUSER=1 \
-    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-19} \
+    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-25} \
     OPENJPEG_VERSION=${OPENJPEG_VERSION:-v2.4.0}
 
 ## Apache, PHP, FFMPEG, and other Islandora Depends.
@@ -224,8 +224,8 @@ RUN BUILD_DEPS="build-essential \
 ENV COMPOSER_HASH=${COMPOSER_HASH:-9c234603a06f27041dca6b639a16ebc1f27ea22b} \
     COMPOSER_VERSION=${COMPOSER_VERSION:-1.10.25} \
     FITS_VERSION=${FITS_VERSION:-1.5.1} \
-    XERCES_VERSION=${XERCES_VERSION:-2.12.1} \
-    XERCES_VERSION_DIR=${XERCES_VERSION_DIR:-2_12_1}
+    XERCES_VERSION=${XERCES_VERSION:-2.12.2} \
+    XERCES_VERSION_DIR=${XERCES_VERSION_DIR:-2_12_2}
 
 ## Let's go!  Finalize all remaining: djatoka, composer, drush, fits.
 # @see: Drush https://github.com/drush-ops/drush/tags
