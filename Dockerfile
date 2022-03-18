@@ -41,10 +41,13 @@ RUN GEN_DEP_PACKS="software-properties-common \
 
 ## S6-Overlay
 # @see: https://github.com/just-containers/s6-overlay
-ENV S6_OVERLAY_VERSION=${S6_OVERLAY_VERSION:-2.2.0.3}
-ADD https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-amd64-installer /tmp/
-RUN chmod +x /tmp/s6-overlay-amd64-installer && \
-    /tmp/s6-overlay-amd64-installer /
+ENV S6_OVERLAY_VERSION=${S6_OVERLAY_VERSION:-3.1.0.1}
+ADD https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-x86_64.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v$S6_OVERLAY_VERSION/s6-overlay-symlinks-noarch.tar.xz /tmp 
+RUN tar -C / -Jxpf /tmp/s6-overlay-symlinks-noarch.tar.xz
 
 ENV LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
@@ -62,7 +65,7 @@ ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     KAKADU_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64 \
     LD_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64:/usr/local/lib:$LD_LIBRARY_PATH \
     COMPOSER_ALLOW_SUPERUSER=1 \
-    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-25} \
+    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-27} \
     OPENJPEG_VERSION=${OPENJPEG_VERSION:-v2.4.0}
 
 ## Apache, PHP, FFMPEG, and other Islandora Depends.
@@ -218,7 +221,8 @@ RUN BUILD_DEPS="build-essential \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Composer & FITS ENV
-# @see: Composer https://github.com/composer/getcomposer.org/commits/main replace hash below with most recent hash also update version too if changed
+# @see: Composer https://github.com/composer/getcomposer.org/tree/main/web/download check if new version otherwise don't move on
+# @see: if new Composer 1.x version then replace commit hash below https://github.com/composer/getcomposer.org/commits/main
 # @see: FITS https://projects.iq.harvard.edu/fits/downloads
 # @see: XERCES https://xerces.apache.org/mirrors.cgi for the new xml-api.jar version.
 ENV COMPOSER_HASH=${COMPOSER_HASH:-9c234603a06f27041dca6b639a16ebc1f27ea22b} \
