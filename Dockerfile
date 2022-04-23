@@ -62,7 +62,7 @@ ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     KAKADU_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64 \
     LD_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64:/usr/local/lib:$LD_LIBRARY_PATH \
     COMPOSER_ALLOW_SUPERUSER=1 \
-    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-27} \
+    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-30} \
     OPENJPEG_VERSION=${OPENJPEG_VERSION:-v2.4.0}
 
 ## Apache, PHP, FFMPEG, and other Islandora Depends.
@@ -222,8 +222,8 @@ RUN BUILD_DEPS="build-essential \
 # @see: if new Composer 1.x version then replace commit hash below https://github.com/composer/getcomposer.org/commits/main
 # @see: FITS https://projects.iq.harvard.edu/fits/downloads
 # @see: XERCES https://xerces.apache.org/mirrors.cgi for the new xml-api.jar version.
-ENV COMPOSER_HASH=${COMPOSER_HASH:-9c234603a06f27041dca6b639a16ebc1f27ea22b} \
-    COMPOSER_VERSION=${COMPOSER_VERSION:-1.10.25} \
+ENV COMPOSER_HASH=${COMPOSER_HASH:-650bee119e1f3b87be1b787fe69a826f73dbdfb9} \
+    COMPOSER_VERSION=${COMPOSER_VERSION:-1.10.26} \
     FITS_VERSION=${FITS_VERSION:-1.5.1} \
     XERCES_VERSION=${XERCES_VERSION:-2.12.2} \
     XERCES_VERSION_DIR=${XERCES_VERSION_DIR:-2_12_2}
