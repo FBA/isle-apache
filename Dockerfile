@@ -1,4 +1,4 @@
-# @see https://github.com/adoptium/containers/blob/main/8/jdk/ubuntu/Dockerfile.releases.full for newer supported java updates
+# @see https://github.com/adoptium/containers/blob/main/8/jdk/ubuntu/focal/Dockerfile.releases.full for newer supported java updates
 FROM eclipse-temurin:8-jdk-focal
 
 ENV INITRD=no \
@@ -62,8 +62,8 @@ ENV PATH=$PATH:$HOME/.composer/vendor/bin \
     KAKADU_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64 \
     LD_LIBRARY_PATH=/usr/local/adore-djatoka-1.1/lib/Linux-x86-64:/usr/local/lib:$LD_LIBRARY_PATH \
     COMPOSER_ALLOW_SUPERUSER=1 \
-    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-30} \
-    OPENJPEG_VERSION=${OPENJPEG_VERSION:-v2.4.0}
+    IMAGEMAGICK_VERSION=${IMAGEMAGICK_VERSION:-7.1.0-35} \
+    OPENJPEG_VERSION=${OPENJPEG_VERSION:-v2.5.0}
 
 ## Apache, PHP, FFMPEG, and other Islandora Depends.
 ## Apache && PHP 7.1 from ondrej PPA
